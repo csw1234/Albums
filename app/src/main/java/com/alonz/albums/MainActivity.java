@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Album album = arrayOfAlbums.get(position);
-                int songLength =album.songName.length;
+                int songLength = album.songName.length;
 
                 if (swipeDetector.swipeDetected()) {
-                    if (swipeDetector.getAction() == SwipeDetector.Action.LR) {
+                    if (swipeDetector.getAction() == SwipeDetector.Action.RL) {
 
-                        Toast.makeText(getApplicationContext(),
-                                "Left to right" + position, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                "Right to left" + position, Toast.LENGTH_SHORT).show();
                         if (album.currentSong < songLength - 1) {
                             album.currentSong++;
                         }
@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     }
-                    if (swipeDetector.getAction() == SwipeDetector.Action.RL) {
+                    if (swipeDetector.getAction() == SwipeDetector.Action.LR) {
 
-                        Toast.makeText(getApplicationContext(),
-                                "Right to left", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),
+//                                "left to Right", Toast.LENGTH_SHORT).show();
 
                         if (album.currentSong > 0) {
                             album.currentSong--;
@@ -113,5 +113,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

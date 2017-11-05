@@ -63,5 +63,6 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
         return convertView;
 
     }
+
     }
 
