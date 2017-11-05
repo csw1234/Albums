@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Album album = arrayOfAlbums.get(position);
-                int songLength = JsonUtils.songListNames;
+                int songLength =album.songName.length;
 
                 if (swipeDetector.swipeDetected()) {
                     if (swipeDetector.getAction() == SwipeDetector.Action.LR) {
@@ -54,10 +54,9 @@ public class MainActivity extends AppCompatActivity {
                             album.currentSong++;
                         }
                         int currentSong = album.currentSong;
-                        String song = JsonUtils.JsonParse(position, currentSong).songName;
+                        String song = album.songName[currentSong];
                         if (!song.equals("")) {
                             TextView songText = (TextView) view.findViewById(R.id.songText);
-                            album.songName = song;
                             songText.setText(song);
                         } else {
                             album.currentSong--;
@@ -73,10 +72,9 @@ public class MainActivity extends AppCompatActivity {
                             album.currentSong--;
                         }
                         int currentSong = album.currentSong;
-                        String song = JsonUtils.JsonParse(position, currentSong).songName;
+                        String song = album.songName[currentSong];
                         if (!song.equals("")) {
                             TextView songText = (TextView) view.findViewById(R.id.songText);
-                            album.songName = song;
                             songText.setText(song);
 
                         }
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.addButton) {
-            Album album = JsonUtils.JsonParse(numOfAlbumsToDisplay, 0);
+            Album album = JsonUtils.JsonParse(numOfAlbumsToDisplay);
             if (album != null) {
                 adapter.add(album);
                 numOfAlbumsToDisplay++;

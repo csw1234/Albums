@@ -10,11 +10,11 @@ public class Album {
     String genreName;
     String imageUrl;
     int currentSong;
-    String songName;
-    String duration;
-    
+    String[] songName;
+    String[] duration;
 
-    public Album(String albumName, String authorName, String genreName, String imageUrl, int currentSong, String songName, String duration) {
+
+    public Album(String albumName, String authorName, String genreName, String imageUrl, int currentSong, String[] songName, String[] duration) {
         this.albumName = albumName;
         this.authorName=authorName;
         this.genreName=genreName;

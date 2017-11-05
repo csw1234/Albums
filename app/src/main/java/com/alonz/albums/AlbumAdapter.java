@@ -57,8 +57,8 @@ public class AlbumAdapter extends ArrayAdapter<Album> {
         albumText.setText(album.albumName);
         authorText.setText(album.authorName);
         genreText.setText(album.genreName);
-        songText.setText(album.songName);
-        durationText.setText(album.duration);
+        songText.setText(album.songName[album.currentSong]);
+        durationText.setText(album.duration[album.currentSong]);
 
         return convertView;
 

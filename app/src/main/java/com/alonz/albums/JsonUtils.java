@@ -3,6 +3,11 @@ package com.alonz.albums;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.attr.duration;
+
 /**
  * Created by alonz on 01/11/2017.
  */
@@ -59,15 +64,16 @@ public class JsonUtils {
             "  }\n" +
             "]";
 
-    static String songName;
-    static String duration;
+
     static int songListNames = 0;
 
     public JsonUtils() {
     }
 
-    public static Album JsonParse(int numOfAlbums, int currentSong) {
+    public static Album JsonParse(int numOfAlbums) {
         Album album = null;
+        List<String> mSongName = new ArrayList<String>();
+        List<String> mDuration = new ArrayList<String>();
         try {
             JSONArray root = new JSONArray(jsonString);
             if (numOfAlbums < root.length()) {
@@ -77,15 +83,18 @@ public class JsonUtils {
                 String genreName = mainObject.getString("genre");
                 String imageUrl = mainObject.getString("image");
                 JSONArray songDetail = mainObject.getJSONArray("songs");
+
                 songListNames = songDetail.length();
-                if (currentSong < songListNames) {
-                    JSONObject currentSongObject = songDetail.getJSONObject(currentSong);
-                    songName = currentSongObject.getString("song");
-                    duration = currentSongObject.getString("duration");
-                    album = new Album(albumName, authorName, genreName, imageUrl, currentSong, songName, duration);
-                } else {
-                    return null;
+                for (int i=0; i<songDetail.length();i++){
+                    JSONObject currentSongObject = songDetail.getJSONObject(i);
+                    mSongName.add(currentSongObject.getString("song"));
+                    mDuration.add(currentSongObject.getString("duration"));
                 }
+                String[] songName = new String[mSongName.size()];
+                String[] duration = new String[mSongName.size()];
+                mSongName.toArray(songName);
+                mDuration.toArray(duration);
+                album = new Album(albumName, authorName, genreName, imageUrl, 0, songName, duration);
 
             }
 
